@@ -81,14 +81,17 @@ def simulate(s: Series, strat, warmup: int = 35) -> Result:
     exp_sum = 0
     n = 0
     for i in range(warmup, len(s.closes)):
-        target = strat(s, i)
+        # NO LOOK-AHEAD: decide on the PRIOR bar's close (i-1), then earn bar i's return.
+        # (Deciding on strat(s, i) and earning closes[i]/closes[i-1] trades on info you
+        #  don't have yet — it inflated returns ~50pts. This is the honest, tradeable form.)
+        target = strat(s, i - 1)
         if target < 0:          # meanrev "hold" sentinel
             target = pos
         if target != pos:
             equity *= (1 - COST)  # rebalance cost
             trades += 1
             pos = target
-        # daily return applied to the in-market fraction
+        # next-bar return applied to the in-market fraction
         r = s.closes[i] / s.closes[i - 1] - 1
         equity *= (1 + pos * r)
         peak = max(peak, equity)
