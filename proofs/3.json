@@ -1,0 +1,40 @@
+{
+ "tick": 3,
+ "agent_id": "1422",
+ "git_commit": "b649276",
+ "symbol": "BNB",
+ "signals": {
+  "price": 604.55,
+  "rsi": 44.24,
+  "macd": -10.94,
+  "macd_signal": -11.55,
+  "ema_fast": 608.2,
+  "ema_slow": 623.8,
+  "fear_greed": 24,
+  "funding_rate": 0.0
+ },
+ "action": "hold",
+ "size_pct": 0.0,
+ "confidence": 0.25,
+ "reason": "MACD>signal; EMA trend down; F&G 24 fear",
+ "risk": {
+  "drawdown_pct": 0.0,
+  "equity": 1000.0,
+  "peak_equity": 1000.0,
+  "trades_today": 0,
+  "verdict": "ok"
+ },
+ "rules": {
+  "max_drawdown_pct": 25.0,
+  "max_trade_pct": 20.0,
+  "max_daily_trades": 12,
+  "max_slippage_pct": 1.0,
+  "allowlist": [
+   "BNB",
+   "BTC",
+   "ETH",
+   "USDC",
+   "USDT"
+  ]
+ }
+}

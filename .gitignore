@@ -12,3 +12,4 @@ venv/
 # data
 *.log
 backtest-results/
+proofs/          # runtime receipts; real demo proofs force-added explicitly
