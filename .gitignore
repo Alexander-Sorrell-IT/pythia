@@ -1,0 +1,14 @@
+# secrets — NEVER commit
+.env
+*.key
+wallets/
+.bnbagent/
+.twak/
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+# data
+*.log
+backtest-results/
