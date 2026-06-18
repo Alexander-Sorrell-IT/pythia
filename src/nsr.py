@@ -39,10 +39,13 @@ def settle_commit_for(fid: str, expiry_snapshot: dict, verdict: str) -> str:
 
 
 def _anchor(idn, key: str, value: str) -> int | None:
-    """set_metadata and return the block number the commit landed in (None if dry/no-chain)."""
+    """set_metadata (gasless via MegaFuel) and return the block the commit landed in."""
     res = idn.sdk.set_metadata(AGENT_ID, key, value)
-    rcpt = res.get("receipt") or {}
-    return res.get("blockNumber") or (rcpt.get("blockNumber") if isinstance(rcpt, dict) else None)
+    blk = res.get("blockNumber")
+    rcpt = res.get("receipt")
+    if blk is None and rcpt is not None:
+        blk = rcpt.get("blockNumber") if isinstance(rcpt, dict) else getattr(rcpt, "blockNumber", None)
+    return blk
 
 
 def do_write(sector: str, threshold_pct: float, horizon_s: int, key: str, idn=None) -> str:

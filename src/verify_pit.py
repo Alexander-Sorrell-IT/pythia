@@ -49,6 +49,11 @@ def verify(rec: dict, idn=None) -> tuple[bool, list[tuple[str, bool | None, str]
 
     # 4. ANCHOR-ORDER — read the two block timestamps straight off BNB Chain
     w3 = idn.sdk.web3
+    try:   # BSC is PoA: its block extraData is longer than Ethereum's, so web3 needs this to read blocks
+        from web3.middleware import ExtraDataToPOAMiddleware
+        w3.middleware_onion.inject(ExtraDataToPOAMiddleware, layer=0)
+    except Exception:
+        pass
     wt = w3.eth.get_block(rec["write_block"]).timestamp
     st = w3.eth.get_block(rec["settle_block"]).timestamp
     order_ok = (wt < st) and (st >= forward["emitted_at"] + forward["horizon_s"])
@@ -60,6 +65,10 @@ def verify(rec: dict, idn=None) -> tuple[bool, list[tuple[str, bool | None, str]
 
 
 def main(argv: list[str]) -> int:
+    try:
+        from dotenv import load_dotenv; load_dotenv()
+    except Exception:
+        pass
     offline = "--offline" in argv
     ids = [a for a in argv if not a.startswith("--")]
     if not ids:

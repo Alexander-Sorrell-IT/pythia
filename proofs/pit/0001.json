@@ -4,44 +4,44 @@
  "forward": {
   "sector": "binance-ecosystem",
   "threshold_pct": 0.0,
-  "horizon_s": 2,
-  "emitted_at": 1781791355
+  "horizon_s": 25,
+  "emitted_at": 1781798103
  },
  "write_snapshot": {
   "caps": {
    "binance-ecosystem": 2200000000000.0,
    "layer-1": 1740000000000.0,
-   "us-strategic-crypto-reserve": 1610000000000.0,
+   "sec-cftc-token-taxonomy": 1660000000000.0,
    "sec-cftc-digital-commodities": 1660000000000.0
   },
   "names": {
    "binance-ecosystem": "Binance Ecosystem",
    "layer-1": "Layer 1",
-   "us-strategic-crypto-reserve": "US Strategic Crypto Reserve",
+   "sec-cftc-token-taxonomy": "SEC/CFTC Token Taxonomy",
    "sec-cftc-digital-commodities": "SEC/CFTC Digital Commodities"
   },
-  "ts": 1781791355
+  "ts": 1781798103
  },
- "write_commit": "0x3f0754df22d5c08b5476ceadcf4d3dd00aae439c3f022c263ae900c826a71c4c",
- "write_block": null,
- "expires_at": 1781791357,
+ "write_commit": "0x4d25aef54022fe033f9c45b11cfa7bf44e06e3663414e936db8663c22201d9e6",
+ "write_block": 114122344,
+ "expires_at": 1781798128,
  "expiry_snapshot": {
   "caps": {
    "binance-ecosystem": 2200000000000.0,
    "layer-1": 1740000000000.0,
-   "us-strategic-crypto-reserve": 1610000000000.0,
+   "sec-cftc-token-taxonomy": 1660000000000.0,
    "sec-cftc-digital-commodities": 1660000000000.0
   },
   "names": {
    "binance-ecosystem": "Binance Ecosystem",
    "layer-1": "Layer 1",
-   "us-strategic-crypto-reserve": "US Strategic Crypto Reserve",
+   "sec-cftc-token-taxonomy": "SEC/CFTC Token Taxonomy",
    "sec-cftc-digital-commodities": "SEC/CFTC Digital Commodities"
   },
-  "ts": 1781791358
+  "ts": 1781798157
  },
  "verdict": "REALIZED",
- "settle_detail": "share 30.513% -> 30.513%  (+0.00% vs +0.0% needed)  => REALIZED",
- "settle_commit": "0xc166905811cdd9915e35bf1b0c8477c5686e4ac0df9dfd6098f673476d155397",
- "settle_block": null
+ "settle_detail": "share 30.303% -> 30.303%  (+0.00% vs +0.0% needed)  => REALIZED",
+ "settle_commit": "0x1b91b36c5ebc23d763f3905e675578289c045d107e2610df4611cde15c9648a7",
+ "settle_block": 114122420
 }
