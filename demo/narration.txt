@@ -1,0 +1,11 @@
+Would you let a bot trade your money? Most AI trading agents are black boxes. They make a promise, and you just hope.
+
+Solvent is different. Before every trade, it writes its reasoning and its risk rules onto the blockchain. A receipt you can check.
+
+You don't trust it. You verify it. Clone the repo, run one command, and watch the agent's own decision recompute, exactly, against the chain.
+
+And it doesn't stop at itself. Point Solvent's scanner at any agent on the network, and it catches the ones that signed a clean receipt for a trade their own rules forbid.
+
+Built on BNB Chain. Powered by CoinMarketCap signals. Signed with Trust Wallet, so your keys never move.
+
+Solvent is not built to gamble. It is built to be accountable by construction. An agent you don't have to trust, because you can check.
