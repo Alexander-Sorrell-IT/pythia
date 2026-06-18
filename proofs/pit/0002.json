@@ -1,11 +1,11 @@
 {
- "id": "0001",
+ "id": "0002",
  "agent_id": 1422,
  "forward": {
-  "sector": "binance-ecosystem",
+  "sector": "layer-1",
   "threshold_pct": 0.0,
   "horizon_s": 90,
-  "emitted_at": 1781821972
+  "emitted_at": 1781821979
  },
  "write_snapshot": {
   "caps": {
@@ -20,7 +20,7 @@
    "sec-cftc-token-taxonomy": "SEC/CFTC Token",
    "ftx-bankruptcy-estate": "FTX Bankruptcy Estate"
   },
-  "ts": 1781821972,
+  "ts": 1781821979,
   "trigger": {
    "deriv": {
     "oi_usd": 390710000000.0,
@@ -35,9 +35,9 @@
    "gate_reason": "OI -2.65% 24h (deleveraging \u2192 hold)"
   }
  },
- "write_commit": "0xc4edf3edf8724d404c55150ab685e0354039290aa41704415143c319d8214d95",
- "write_block": 114175341,
- "expires_at": 1781822062,
+ "write_commit": "0x89ddfd7d9e59cf94f0969b731c9866416af356ab9ca1e3a7d8c3f6e2f398730f",
+ "write_block": 114175399,
+ "expires_at": 1781822069,
  "expiry_snapshot": {
   "caps": {
    "binance-ecosystem": 2170000000000.0,
@@ -51,10 +51,10 @@
    "sec-cftc-token-taxonomy": "SEC/CFTC Token",
    "ftx-bankruptcy-estate": "FTX Bankruptcy Estate"
   },
-  "ts": 1781822108
+  "ts": 1781822134
  },
  "verdict": "REALIZED",
- "settle_detail": "share 30.563% -> 30.563%  (+0.00% vs +0.0% needed)  => REALIZED",
- "settle_commit": "0xfb53afe6d51869a0a7a9beac926cffa7bec5c98eba0a6764b1a7604e58417216",
- "settle_block": 114175685
+ "settle_detail": "share 23.944% -> 23.944%  (+0.00% vs +0.0% needed)  => REALIZED",
+ "settle_commit": "0xa53b6eecf7840bfc5ed115ed0217209819f47c5c61df2f6b9c124a384e8659f5",
+ "settle_block": 114175703
 }
