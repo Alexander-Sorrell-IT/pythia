@@ -183,13 +183,22 @@ as the unit of account.
 
 ## Prize map
 
-- **Best Use of BNB SDK** — `bnbagent` ERC-8004 identity as the on-chain reputation ledger
-  (`set_metadata` / `get_metadata`), MegaFuel-gasless anchoring, and the ERC-8183 escrow rail
-  (`create_job` / `set_budget` / `fund` / `settle`) for agent-to-agent credit.
-- **CMC special prizes** — the instrument settles on CMC's `trending_crypto_narratives` per-sector
-  `marketCapUsd`, a scalar no generic price feed exposes; the Agent Hub key drives every snapshot.
-- **Track 2** — the NarrativePit settlement core (`narrative.py` + `verify_pit.py`) packages as a
-  reusable CMC Skill: a deterministic, recomputable narrative-rotation settler.
+This is a **Track 2** submission targeting the two cross-track specials it is genuinely eligible
+for. *Best Use of TWAK is **Track-1-only** (a live-PnL trading agent), so it is out of scope here —
+and this build uses the BNB SDK's `X402Signer`, not the Trust Wallet Agent Kit.*
+
+- **Track 2 — Strategy Skills** — `skill.py`: the narrative-rotation policy as a deterministic,
+  backtestable, recomputable CMC Skill (the same `settle()` core, reproducible on a fresh clone).
+- **Best Use of BNB AI Agent SDK** *(both tracks)* — three SDK subsystems, all load-bearing:
+  ERC-8004 identity + on-chain **reputation ledger** (`set_metadata`/`get_metadata`, MegaFuel-gasless);
+  the **ERC-8183 escrow** rail (`create_job`/`set_budget`/`fund`/`settle`/`dispute`, `escrow.py`); and
+  **x402 `X402Signer`** custody-safe premium settlement with three live anti-rug refusals
+  (`x402_pay.py`).
+- **Best Use of CMC Agent Hub** *(both tracks)* — three CMC tools committed into every forward:
+  `trending_crypto_narratives` (the instrument — per-sector `marketCapUsd`, a scalar no price feed
+  exposes), `get_global_crypto_derivatives_metrics` (the open-interest early-tell **gate**), and
+  `get_upcoming_macro_events` (the macro **anchor**) — all hashed into `write_commit`, so tampering
+  any reading breaks `verify_pit`'s HASH (`trigger.py`).
 
 ---
 
