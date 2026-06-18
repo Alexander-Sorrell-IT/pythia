@@ -45,6 +45,9 @@ def _anchor(idn, key: str, value: str) -> int | None:
     rcpt = res.get("receipt")
     if blk is None and rcpt is not None:
         blk = rcpt.get("blockNumber") if isinstance(rcpt, dict) else getattr(rcpt, "blockNumber", None)
+    if blk is None:   # a None block silently corrupts the proof and only fails at verify time — fail loud now
+        raise RuntimeError(f"anchored {key} but could not read its block number (tx {res.get('transactionHash')}); "
+                           "proof would be un-verifiable — aborting before saving")
     return blk
 
 

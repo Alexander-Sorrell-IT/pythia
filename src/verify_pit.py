@@ -84,7 +84,14 @@ def main(argv: list[str]) -> int:
     for name, passed, detail in checks:
         mark = "•" if passed is None else ("✓" if passed else "✗")
         print(f"  [{mark}] {name:<13} {detail}")
-    print(f"\n{'✓✓✓✓ FOUR GREEN — the verdict is real and you re-derived it' if ok else '✗ verification failed'}")
+    ran = sum(1 for _, p, _ in checks if p is not None)
+    if not ok:
+        print("\n✗ verification failed")
+    elif ran == 4:
+        print("\n✓✓✓✓ FOUR GREEN — the verdict is real and you re-derived it")
+    else:
+        word = {2: "TWO", 3: "THREE"}.get(ran, str(ran))
+        print(f"\n✓✓ {word} GREEN (offline — HASH + REPLAY only; run live for ANCHOR-EXISTS + ANCHOR-ORDER)")
     return 0 if ok else 1
 
 
