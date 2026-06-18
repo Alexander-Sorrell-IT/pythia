@@ -51,13 +51,16 @@ def _anchor(idn, key: str, value: str) -> int | None:
     return blk
 
 
-def do_write(sector: str, threshold_pct: float, horizon_s: int, key: str, idn=None) -> str:
+def do_write(sector: str, threshold_pct: float, horizon_s: int, key: str, idn=None,
+             trigger: dict | None = None) -> str:
     now = int(time.time())
     snap = fetch_snapshot(key, now)
     if sector not in snap.caps:
         raise SystemExit(f"sector slug {sector!r} not in current trending set: {sorted(snap.caps)[:8]}…")
     forward = {"sector": sector, "threshold_pct": threshold_pct, "horizon_s": horizon_s, "emitted_at": now}
     wsnap = _snap_out(snap)
+    if trigger is not None:          # CMC trigger context (deriv/macro) — committed INTO the bet so it hashes
+        wsnap["trigger"] = trigger
     wcommit = write_commit_for(forward, wsnap)
 
     PIT.mkdir(parents=True, exist_ok=True)

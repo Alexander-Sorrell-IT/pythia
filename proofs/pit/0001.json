@@ -4,44 +4,57 @@
  "forward": {
   "sector": "binance-ecosystem",
   "threshold_pct": 0.0,
-  "horizon_s": 25,
-  "emitted_at": 1781798103
+  "horizon_s": 2,
+  "emitted_at": 1781816761
  },
  "write_snapshot": {
   "caps": {
-   "binance-ecosystem": 2200000000000.0,
-   "layer-1": 1740000000000.0,
-   "sec-cftc-token-taxonomy": 1660000000000.0,
-   "sec-cftc-digital-commodities": 1660000000000.0
+   "binance-ecosystem": 2180000000000.0002,
+   "layer-1": 1710000000000.0,
+   "sec-cftc-token-taxonomy": 1640000000000.0,
+   "ftx-bankruptcy-estate": 1610000000000.0
   },
   "names": {
    "binance-ecosystem": "Binance Ecosystem",
    "layer-1": "Layer 1",
    "sec-cftc-token-taxonomy": "SEC/CFTC Token Taxonomy",
-   "sec-cftc-digital-commodities": "SEC/CFTC Digital Commodities"
+   "ftx-bankruptcy-estate": "FTX Bankruptcy Estate"
   },
-  "ts": 1781798103
+  "ts": 1781816761,
+  "trigger": {
+   "deriv": {
+    "oi_usd": 408320000000.0,
+    "oi_change_24h_pct": 3.1
+   },
+   "macro": {
+    "title": "Statutory Effective Date",
+    "event_date": "18 January 2027",
+    "url": "https://www.kucoin.com/blog/jp-2026-genius-act-the-latest-status-and-update"
+   },
+   "gate_open": true,
+   "gate_reason": "OI +3.10% 24h (building \u2192 author)"
+  }
  },
- "write_commit": "0x4d25aef54022fe033f9c45b11cfa7bf44e06e3663414e936db8663c22201d9e6",
- "write_block": 114122344,
- "expires_at": 1781798128,
+ "write_commit": "0xb0f1bc7109e1b6cba39c5f58ac69e6bf3be19e0b15c6ecd79de1c9423cc17879",
+ "write_block": null,
+ "expires_at": 1781816763,
  "expiry_snapshot": {
   "caps": {
-   "binance-ecosystem": 2200000000000.0,
-   "layer-1": 1740000000000.0,
-   "sec-cftc-token-taxonomy": 1660000000000.0,
-   "sec-cftc-digital-commodities": 1660000000000.0
+   "binance-ecosystem": 2180000000000.0002,
+   "layer-1": 1710000000000.0,
+   "sec-cftc-token-taxonomy": 1640000000000.0,
+   "ftx-bankruptcy-estate": 1610000000000.0
   },
   "names": {
    "binance-ecosystem": "Binance Ecosystem",
    "layer-1": "Layer 1",
    "sec-cftc-token-taxonomy": "SEC/CFTC Token Taxonomy",
-   "sec-cftc-digital-commodities": "SEC/CFTC Digital Commodities"
+   "ftx-bankruptcy-estate": "FTX Bankruptcy Estate"
   },
-  "ts": 1781798157
+  "ts": 1781816764
  },
  "verdict": "REALIZED",
- "settle_detail": "share 30.303% -> 30.303%  (+0.00% vs +0.0% needed)  => REALIZED",
- "settle_commit": "0x1b91b36c5ebc23d763f3905e675578289c045d107e2610df4611cde15c9648a7",
- "settle_block": 114122420
+ "settle_detail": "share 30.532% -> 30.532%  (+0.00% vs +0.0% needed)  => REALIZED",
+ "settle_commit": "0x06892f5c51bc0abfd62359de6920242b85a6e33926b881f28208d55c644ea038",
+ "settle_block": null
 }
