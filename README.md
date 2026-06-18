@@ -23,7 +23,8 @@ existed, reputation was an unfalsifiable claim — and unfalsifiable claims can'
   verdict from public CMC data and the on-chain commits, and a wrong verdict is disputable. The chain
   proves *ordering and integrity*, not truth-by-fiat.
 - It **is not** a live, populated market. In the demo we play both sides (Writer and Taker), and the
-  single anchored forward is a zero-delta smoke test, not a real directional win. See
+  four anchored forwards are settled against a roughly static short-horizon tape — a real distribution
+  (2 REALIZED / 2 MISSED) that proves the mechanism, not forecasting alpha. See
   [Limitations](#limitations) — we say this plainly.
 
 ---
@@ -92,9 +93,9 @@ Reads the settled `proofs/pit/*.json` records, derives the agent's hit-rate, and
 premium and the credit line it backs:
 
 ```
-settled forwards: 1  realized: 1  ->  hit_rate 1.000
-  quote premium   = base*(1-hit_rate) = 0.0
-  credit_line     = base*hit_rate     = 1000.0
+settled forwards: 4  realized: 2  ->  hit_rate 0.500
+  quote premium   = base*(1-hit_rate) = 50.0
+  credit_line     = base*hit_rate     = 500.0
 ```
 
 Add `--publish` to anchor the hit-rate on-chain under `rep/1/hitrate` (gasless) and read it back
@@ -111,10 +112,11 @@ This is the NarrativePit credit loop end to end: live CMC narrative read → wri
 it on-chain *before* the horizon → let the horizon pass, settle and anchor the verdict *after* →
 `verify_pit` four-green → the settled hit-rate priced as premium and credit line.
 
-> The demo's step 5 prints a reputation-gated **contrast** — veteran `#1422` (hit-rate 1.00, credit
-> 1000) next to a rookie `#1446` (hit-rate 0.20, credit 200). The veteran's numbers are derived from
-> the real anchored proof; the rookie's are **illustrative narration** to show the mechanism. There
-> is no `#1446` proof or second on-chain agent in this repo. See [Limitations](#limitations).
+> The demo's step 5 prints a reputation-gated **contrast** — veteran `#1422` (hit-rate **0.50**,
+> credit 500, derived from 4 real anchored proofs: 2 REALIZED / 2 MISSED) next to a rookie `#1446`
+> (hit-rate 0.20, credit 200). Both are **real on-chain ERC-8004 agents** with hit-rates written under
+> `rep/1/hitrate`; the difference is the veteran's record is **earned** from settled forwards, while
+> `#1446`'s low rate was set directly (it has no settled forwards of its own). See [Limitations](#limitations).
 
 ---
 
@@ -167,17 +169,17 @@ as the unit of account.
 
 ## What's proven on-chain
 
-- **Four-green, gasless.** Agent #1422's forward `0001` is anchored on BNB Chain testnet: both
-  commits exist, the write block precedes the settle-data block, and the verdict re-derives from the
-  committed CMC snapshots. All anchoring is gasless via the **MegaFuel** paymaster. (Forward `0001`
-  is a `threshold_pct = 0.0` forward on `binance-ecosystem` whose write/expiry snapshots are equal —
-  a +0.00% ≥ 0.0% smoke test that exercises the full anchor-and-re-derive rail, not a directional
-  call. See [Limitations](#limitations).)
-- **Reputation-gated credit.** The hit-rate is published on-chain under `rep/1/hitrate` and read
-  back; the premium and credit line are recomputable by anyone from that single on-chain value.
-  With a perfect record the agent's `credit_line` is **1000** and its `premium` is **0**; a poor
-  record contracts the line and widens the spread — `credit_line = base·hit_rate`,
-  `premium = base·(1−hit_rate)`.
+- **Four-green, gasless.** Agent #1422 has **4 forwards (`0001`–`0004`)** anchored on BNB Chain
+  testnet with **pre-declared mixed thresholds** (two at `0.0%`, two at `0.6%`): both commits exist,
+  the write block precedes the settle-data block, and each verdict re-derives from the committed CMC
+  snapshots. **2 REALIZED, 2 MISSED** — a real, market-decided distribution, not cherry-picked. All
+  anchoring is gasless via the **MegaFuel** paymaster. *(Honest: over the ~90s horizons the narrative
+  tape is roughly static, so these verdicts reflect threshold calibration against a flat tape, not
+  predictive skill — the mechanism is the point, not alpha. See [Limitations](#limitations).)*
+- **Reputation-gated credit.** The hit-rate (**0.50** from 2/4 realized) is published on-chain under
+  `rep/1/hitrate` and read back; the premium and credit line are recomputable by anyone from that
+  on-chain value — here `credit_line = base·0.5 = 500`, `premium = base·0.5 = 50`. A better record
+  expands the line and tightens the spread; a worse one contracts it.
 
 ---
 
@@ -210,10 +212,11 @@ We'd rather you trust the parts that are real than oversell the rest.
   and integrity* — the verdict was committed before its settling data existed — and lets anyone
   re-derive the result from public CMC data. A wrong verdict is disputable, not impossible. We never
   claim a deterministic on-chain oracle.
-- **One forward, and it's a smoke test.** The single anchored proof (`0001`) is a zero-threshold
-  forward whose write and expiry snapshots are identical, so it realizes trivially. It proves the
-  *rail* — write → anchor → horizon → settle → anchor → four-green re-derivation — end to end. It is
-  not evidence of forecasting skill, and the hit-rate of 1.000 reflects one degenerate sample.
+- **Real distribution, but not forecasting skill.** Four forwards (`0001`–`0004`) are anchored with
+  pre-declared mixed thresholds → 2 REALIZED / 2 MISSED → hit-rate 0.50. The outcomes are real and
+  market-decided, *but* over the ~90s horizons the narrative tape is roughly static, so the verdicts
+  turn on threshold calibration against a flat tape, **not** on predicting which narrative rotates.
+  It proves the *rail* and the *credit mechanism* end to end; it is not evidence of forecasting alpha.
 - **A slice, not a populated market.** The 3-day demo runs **both** agents — we play the Writer and
   the Taker. It shows one forecaster, one credit line, one closed loop. It is the device turning on,
   not a live market with independent counterparties. The veteran-vs-rookie credit comparison
