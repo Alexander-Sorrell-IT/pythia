@@ -38,17 +38,28 @@ def settle_commit_for(fid: str, expiry_snapshot: dict, verdict: str) -> str:
     return commit_hash({"id": fid, "expiry_snapshot": expiry_snapshot, "verdict": verdict})
 
 
-def _anchor(idn, key: str, value: str) -> int | None:
-    """set_metadata (gasless via MegaFuel) and return the block the commit landed in."""
-    res = idn.sdk.set_metadata(AGENT_ID, key, value)
-    blk = res.get("blockNumber")
-    rcpt = res.get("receipt")
-    if blk is None and rcpt is not None:
-        blk = rcpt.get("blockNumber") if isinstance(rcpt, dict) else getattr(rcpt, "blockNumber", None)
-    if blk is None:   # a None block silently corrupts the proof and only fails at verify time — fail loud now
-        raise RuntimeError(f"anchored {key} but could not read its block number (tx {res.get('transactionHash')}); "
-                           "proof would be un-verifiable — aborting before saving")
-    return blk
+def _anchor(idn, key: str, value: str, retries: int = 3) -> int | None:
+    """set_metadata (gasless via MegaFuel) and return the block the commit landed in.
+
+    The MegaFuel paymaster RPC times out intermittently; retry transient failures so a live
+    anchor (and the demo) survives a flaky sponsor endpoint instead of dying on one bad read.
+    """
+    last: Exception | None = None
+    for attempt in range(retries):
+        try:
+            res = idn.sdk.set_metadata(AGENT_ID, key, value)
+            blk = res.get("blockNumber")
+            rcpt = res.get("receipt")
+            if blk is None and rcpt is not None:
+                blk = rcpt.get("blockNumber") if isinstance(rcpt, dict) else getattr(rcpt, "blockNumber", None)
+            if blk is None:   # None block silently corrupts the proof and only fails at verify time
+                raise RuntimeError(f"anchored {key} but could not read its block (tx {res.get('transactionHash')})")
+            return blk
+        except Exception as e:                 # transient paymaster/RPC timeout — back off and retry
+            last = e
+            if attempt < retries - 1:
+                time.sleep(4)
+    raise RuntimeError(f"anchor {key} failed after {retries} attempts: {last}")
 
 
 def do_write(sector: str, threshold_pct: float, horizon_s: int, key: str, idn=None,
