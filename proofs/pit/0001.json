@@ -1,0 +1,47 @@
+{
+ "id": "0001",
+ "agent_id": 1422,
+ "forward": {
+  "sector": "binance-ecosystem",
+  "threshold_pct": 0.0,
+  "horizon_s": 2,
+  "emitted_at": 1781791355
+ },
+ "write_snapshot": {
+  "caps": {
+   "binance-ecosystem": 2200000000000.0,
+   "layer-1": 1740000000000.0,
+   "us-strategic-crypto-reserve": 1610000000000.0,
+   "sec-cftc-digital-commodities": 1660000000000.0
+  },
+  "names": {
+   "binance-ecosystem": "Binance Ecosystem",
+   "layer-1": "Layer 1",
+   "us-strategic-crypto-reserve": "US Strategic Crypto Reserve",
+   "sec-cftc-digital-commodities": "SEC/CFTC Digital Commodities"
+  },
+  "ts": 1781791355
+ },
+ "write_commit": "0x3f0754df22d5c08b5476ceadcf4d3dd00aae439c3f022c263ae900c826a71c4c",
+ "write_block": null,
+ "expires_at": 1781791357,
+ "expiry_snapshot": {
+  "caps": {
+   "binance-ecosystem": 2200000000000.0,
+   "layer-1": 1740000000000.0,
+   "us-strategic-crypto-reserve": 1610000000000.0,
+   "sec-cftc-digital-commodities": 1660000000000.0
+  },
+  "names": {
+   "binance-ecosystem": "Binance Ecosystem",
+   "layer-1": "Layer 1",
+   "us-strategic-crypto-reserve": "US Strategic Crypto Reserve",
+   "sec-cftc-digital-commodities": "SEC/CFTC Digital Commodities"
+  },
+  "ts": 1781791358
+ },
+ "verdict": "REALIZED",
+ "settle_detail": "share 30.513% -> 30.513%  (+0.00% vs +0.0% needed)  => REALIZED",
+ "settle_commit": "0xc166905811cdd9915e35bf1b0c8477c5686e4ac0df9dfd6098f673476d155397",
+ "settle_block": null
+}

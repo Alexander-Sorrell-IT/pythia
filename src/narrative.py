@@ -6,7 +6,7 @@ a sector's SHARE of total narrative market-cap over a horizon. Deterministic and
 from public CMC data — settle() is the heart the whole instrument stands on.
 """
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import json
 import os
 import re
@@ -45,14 +45,15 @@ def mcp_call(name: str, arguments: dict, api_key: str):
 
 @dataclass
 class NarrativeSnapshot:
-    caps: dict[str, float]    # sector name -> market cap (USD)
-    ts: int = 0               # unix seconds
+    caps: dict[str, float]                       # slug -> market cap (USD)
+    names: dict[str, str] = field(default_factory=dict)   # slug -> display name
+    ts: int = 0                                  # unix seconds
 
     @property
     def total(self) -> float:
         return sum(self.caps.values()) or 1.0
 
-    def share(self, sector: str) -> float:
+    def share(self, sector: str) -> float:       # sector = slug
         return self.caps.get(sector, 0.0) / self.total
 
 
@@ -60,12 +61,14 @@ def fetch_snapshot(api_key: str, ts: int) -> NarrativeSnapshot:
     data = mcp_call("trending_crypto_narratives", {}, api_key)
     cl = data.get("categoryList", data)
     headers, rows = cl["headers"], cl["rows"]
-    ni, mi = headers.index("categoryName"), headers.index("marketCapUsd")
+    si, ni, mi = headers.index("slug"), headers.index("categoryName"), headers.index("marketCapUsd")
     caps: dict[str, float] = {}
+    names: dict[str, str] = {}
     for r in rows:
-        name = str(r[ni]).strip()
-        caps[name] = max(caps.get(name, 0.0), parse_mcap(r[mi]))   # dedupe by max
-    return NarrativeSnapshot(caps=caps, ts=ts)
+        slug = str(r[si]).strip()                # dedupe by STABLE slug, not display name
+        caps[slug] = max(caps.get(slug, 0.0), parse_mcap(r[mi]))   # two rows, same slug -> one
+        names[slug] = str(r[ni]).strip()
+    return NarrativeSnapshot(caps=caps, names=names, ts=ts)
 
 
 @dataclass
