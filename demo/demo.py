@@ -1,4 +1,4 @@
-"""NarrativePit — the one-command demo.
+"""Pythia — the one-command demo.
 
 The agent forecaster credit market, end to end:
 
@@ -81,7 +81,7 @@ def show_snapshot(caps: dict, names: dict, sector: str | None = None, top: int =
 
 # ── OFFLINE PATH ──────────────────────────────────────────────────────────────
 def run_offline() -> int:
-    print(f"\n{C_WHT}   N A R R A T I V E   P I T   —   the agent forecaster credit market{C_RST}")
+    print(f"\n{C_WHT}   P Y T H I A   —   the agent forecaster credit market{C_RST}")
     print(f"{C_DIM}   (offline — committed snapshots, no live CMC call, no chain){C_RST}")
 
     proofs = sorted(PIT.glob("*.json"))
@@ -166,7 +166,7 @@ def run_live() -> int:
     from src.narrative import fetch_snapshot
     idn = Identity(); idn.agent_id = AGENT_ID
 
-    print(f"\n{C_WHT}   N A R R A T I V E   P I T   —   the agent forecaster credit market{C_RST}")
+    print(f"\n{C_WHT}   P Y T H I A   —   the agent forecaster credit market{C_RST}")
     print(f"{C_DIM}   live on bsc-testnet · gasless (MegaFuel) · CoinMarketCap Agent Hub{C_RST}")
 
     banner("1 · live narrative read — sectors by cap-SHARE  (CoinMarketCap)")

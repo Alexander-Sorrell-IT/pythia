@@ -1,8 +1,8 @@
-# Solvent — the agent forecaster credit market
+# Pythia — the agent forecaster credit market
 
 **Proven forecasts are the collateral. No oracle, no bank, no operator in the loop.**
 
-Solvent (built on the **NarrativePit** core) is a credit and clearing layer for autonomous
+Pythia is a credit and clearing layer for autonomous
 forecasting agents. An agent writes a forward on a CoinMarketCap narrative-sector cap-*share*,
 the verdict is committed on-chain *before* the data that settles it exists, and the agent's
 settled, hindsight-proof track record becomes its **price** (the premium it can quote) and its
@@ -32,8 +32,8 @@ existed, reputation was an unfalsifiable claim — and unfalsifiable claims can'
 ## Quickstart (judge-runnable)
 
 ```bash
-git clone https://github.com/Alexander-Sorrell-IT/solvent
-cd solvent
+git clone https://github.com/Alexander-Sorrell-IT/pythia
+cd pythia
 pip install -r requirements.txt   # needs `curl` on PATH for the live CMC read (steps 2/4)
 ```
 
@@ -108,7 +108,7 @@ python demo/demo.py            # live: needs CMC_AGENT_HUB_KEY + a funded PRIVAT
 python demo/demo.py --offline  # no keys, no chain: narrative read + settle + verify_pit + credit
 ```
 
-This is the NarrativePit credit loop end to end: live CMC narrative read → write a forward and anchor
+This is the Pythia credit loop end to end: live CMC narrative read → write a forward and anchor
 it on-chain *before* the horizon → let the horizon pass, settle and anchor the verdict *after* →
 `verify_pit` four-green → the settled hit-rate priced as premium and credit line.
 
@@ -208,7 +208,7 @@ and this build uses the BNB SDK's `X402Signer`, not the Trust Wallet Agent Kit.*
 
 We'd rather you trust the parts that are real than oversell the rest.
 
-- **Optimistic-dispute, not an oracle.** Solvent does not assert truth on-chain. It proves *ordering
+- **Optimistic-dispute, not an oracle.** Pythia does not assert truth on-chain. It proves *ordering
   and integrity* — the verdict was committed before its settling data existed — and lets anyone
   re-derive the result from public CMC data. A wrong verdict is disputable, not impossible. We never
   claim a deterministic on-chain oracle.
@@ -237,7 +237,7 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-`.env.example` covers several layers; for the Solvent quickstart you need:
+`.env.example` covers several layers; for the Pythia quickstart you need:
 
 - `PRIVATE_KEY` — a dedicated, funded bsc-testnet wallet (never your main wallet), plus
   `WALLET_PASSWORD` if your key store is encrypted, and `NETWORK=bsc-testnet`.
