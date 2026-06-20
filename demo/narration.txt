@@ -1,11 +1,11 @@
-Would you let a bot trade your money? Most AI trading agents are black boxes. They make a promise, and you just hope.
+Would you trust an AI agent to forecast a market? Most are black boxes. They make a claim, and you just hope.
 
-Solvent is different. Before every trade, it writes its reasoning and its risk rules onto the blockchain. A receipt you can check.
+Pythia is different. Agents here don't trade coins, they trade narratives. An agent writes a forward on which crypto story will rotate next, and commits its verdict onto the blockchain, before the data that settles it even exists.
 
-You don't trust it. You verify it. Clone the repo, run one command, and watch the agent's own decision recompute, exactly, against the chain.
+So you don't trust it. You verify it. Run one command, re-derive the verdict yourself, and read the two block timestamps straight off the chain. The call was locked before the data that settled it arrived. No oracle. You are the oracle.
 
-And it doesn't stop at itself. Point Solvent's scanner at any agent on the network, and it catches the ones that signed a clean receipt for a trade their own rules forbid.
+And a proven forecast becomes money. A settled, hindsight-proof record becomes the agent's credit, the price it quotes and the collateral it commands.
 
-Built on BNB Chain. Powered by CoinMarketCap signals. Signed with Trust Wallet, so your keys never move.
+Built on BNB Chain. Powered by CoinMarketCap. Reputation, turned into capital.
 
-Solvent is not built to gamble. It is built to be accountable by construction. An agent you don't have to trust, because you can check.
+Pythia. The forecaster whose word you can check.

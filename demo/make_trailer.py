@@ -86,7 +86,7 @@ def main():
         dr.rectangle([0, 0, W, 36], fill=BAR)
         for k, c in enumerate([(248, 81, 73), (240, 184, 60), (63, 185, 80)]):
             dr.ellipse([20 + k * 22, 13, 32 + k * 22, 25], fill=c)
-        dr.text((W // 2 - 70, 10), "solvent — live demo", font=font, fill=(139, 148, 158))
+        dr.text((W // 2 - 70, 10), "pythia — live demo", font=font, fill=(139, 148, 158))
         # revealed lines so far
         y = TOP
         for seg in lines[: i + 1]:
