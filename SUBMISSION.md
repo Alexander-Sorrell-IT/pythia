@@ -40,7 +40,7 @@ Three CMC tools, **load-bearing** (committed into the bet, so tampering breaks t
 
 Three SDK subsystems, all load-bearing:
 - **ERC-8004** identity + on-chain **reputation ledger** (`set_metadata`/`get_metadata`) — the agent's earned record, gasless.
-- **ERC-8183** escrow rail (`create_job`/`set_budget`/`fund`/`settle`/`dispute`) — agent-to-agent credit (`src/escrow.py`).
+- **ERC-8183** escrow lifecycle implemented (`create_job`/`set_budget`/`fund`/`settle`/`dispute`, `src/escrow.py`) for agent-to-agent credit, budget capped by `credit_line`. *Honest: ERC-8183 is not MegaFuel-sponsored (unlike our ERC-8004 core), so the on-chain run is gas-pending on this testnet wallet; the lifecycle returns clean status dicts and a self-escrow fallback rather than faking a tx.*
 - **x402 `X402Signer`** — custody-safe premium settlement: the payee is pinned, the value capped at the quoted premium, the spend metered to `credit_line`, and the wallet **refuses unbounded-allowance rugs** — demoed with three live refusals (`src/x402_pay.py`).
 
 ## Track 2 deliverable
