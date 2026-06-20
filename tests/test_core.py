@@ -313,3 +313,24 @@ def test_verify_offline_tampered_snapshot_fails():
     assert by["HASH"][0] is False
     assert by["REPLAY"][0] is False
     assert ok is False
+
+
+# ── market.py: the signed-quote → ecrecover payee binding (offline, gasless) ──
+
+_TKEY = "0x" + "11" * 32   # a fixed, well-known test private key
+
+
+def test_quote_signs_and_recovers_to_signer():
+    """A signed quote ecrecovers to exactly its signer — the payee binding x402 pays to."""
+    from src.market import sign_quote, recover_writer
+    signed = sign_quote(_TKEY, "binance-ecosystem", 0.5)
+    assert recover_writer(signed).lower() == signed["quote"]["writer"].lower()
+
+
+def test_forged_quote_recovers_a_different_signer():
+    """Tamper the quote → ecrecover yields a different address than the quoted writer → unpayable."""
+    from src.market import sign_quote, recover_writer
+    signed = sign_quote(_TKEY, "binance-ecosystem", 0.5)
+    forged = json.loads(json.dumps(signed))
+    forged["quote"]["premium"] = 999
+    assert recover_writer(forged).lower() != forged["quote"]["writer"].lower()
