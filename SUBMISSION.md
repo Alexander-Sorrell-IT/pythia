@@ -14,7 +14,7 @@ Pythia is the first market where a forecasting agent's **hindsight-proof on-chai
 
 ```bash
 git clone https://github.com/Alexander-Sorrell-IT/pythia && cd pythia && pip install -r requirements.txt
-python -m pytest tests/ -q          # 23 green
+python -m pytest tests/ -q          # 25 green
 python -m src.verify_pit 0001 --offline   # re-derive a verdict yourself: HASH + REPLAY
 python -m src.credit                # reputation → premium 50 / credit_line 500 (from 2/4 real proofs)
 python -m src.x402_pay              # the payment rail refusing 3 live attacks
@@ -24,7 +24,7 @@ With a funded testnet wallet, `python -m src.verify_pit 0001` reads two block ti
 
 ## How it scores the four panel criteria
 
-- **Technical execution (real, not cosmetic).** Four-green `verify_pit` runs against *live BNB Chain blocks*: HASH (published JSON keccaks to the on-chain commit), REPLAY (the deterministic `settle()` reproduces the verdict bit-for-bit), ANCHOR-EXISTS, and **ANCHOR-ORDER** (write block precedes the settle-data block). 4 forwards anchored on-chain, reputation published on-chain, all gasless. 23 unit tests.
+- **Technical execution (real, not cosmetic).** Four-green `verify_pit` runs against *live BNB Chain blocks*: HASH (published JSON keccaks to the on-chain commit), REPLAY (the deterministic `settle()` reproduces the verdict bit-for-bit), ANCHOR-EXISTS, and **ANCHOR-ORDER** (write block precedes the settle-data block). 4 forwards anchored on-chain, reputation published on-chain, all gasless. 25 unit tests.
 - **Originality.** A genuinely new category — *proof-as-collateral*. ANCHOR-ORDER makes a forecast record hindsight-proof, which is what lets a forecast become **bankable** with no oracle and no bank. Settlement and underwriting collapse into one on-chain act.
 - **Real-world relevance.** The user is the capital allocator / fund-of-agents (Theoriq, Sherwood, Giza exist today) that routes money to stranger agents and needs a *trustless* way to price and gate them. Reputation-as-credit is that primitive.
 - **Demo.** One command re-derives the whole claim on the judge's own machine — they don't trust us, they verify us.
