@@ -26,8 +26,10 @@ https://github.com/Alexander-Sorrell-IT/pythia
 0xe2eE3d171191745B2C855BBe43A62283f5B69170
 (ERC-8004 agent #1422, BNB Chain testnet — all writes gasless via MegaFuel paymaster)
 
-**Demo video** (upload demo/pythia_trailer.mp4, or paste an unlisted YouTube link once uploaded)
-<PASTE VIDEO LINK>
+**Demo video**
+https://youtu.be/VPUbTMUXLR0
+
+> NOTE: DoraHacks AND YouTube both reject `<` and `>` in text fields. The message below uses `→` instead of `->`. Do not paste any angle brackets anywhere.
 
 **Cover image / thumbnail**
 demo/pythia_thumbnail.png
@@ -43,9 +45,9 @@ Run the whole claim on your own machine — you don't trust us, you verify us:
     git clone https://github.com/Alexander-Sorrell-IT/pythia && cd pythia && pip install -r requirements.txt
     python -m pytest tests/ -q              # 25 green
     python -m src.verify_pit 0001 --offline # re-derive a verdict yourself: HASH + REPLAY
-    python -m src.credit                    # reputation -> premium 50 / credit_line 500 (from 2/4 real proofs)
+    python -m src.credit                    # reputation → premium 50 / credit_line 500 (from 2/4 real proofs)
     python -m src.x402_pay                  # the payment rail refusing 3 live attacks
-    python -m src.trigger                   # 3 CMC tools -> the gate decision
+    python -m src.trigger                   # 3 CMC tools → the gate decision
 
 With a funded testnet wallet, `python -m src.verify_pit 0001` reads two block timestamps off BNB Chain and prints FOUR GREEN — proving the verdict was committed before the data that settled it existed (ANCHOR-ORDER).
 
